@@ -10,7 +10,7 @@ using TodoApp.Data;
 
 namespace TodoApp.Data.Entities
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(TaskDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

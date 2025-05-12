@@ -11,7 +11,7 @@ using TodoApp.Data;
 
 namespace TodoApp.Data.Entities
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(TaskDbContext))]
     [Migration("20250508133910_2")]
     partial class _2
     {
