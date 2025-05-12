@@ -10,7 +10,7 @@ CREATE TABLE TodoTasks
     TaskID INT PRIMARY KEY IDENTITY(1,1),
     TaskRequester VARCHAR(100),
     TaskName VARCHAR(200),
-    Deadline VARCHAR(100),
+    Deadline DATETIME,
     Priority INT,
     TaskType VARCHAR(50)
 )

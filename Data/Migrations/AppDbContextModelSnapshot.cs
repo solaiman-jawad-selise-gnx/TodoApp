@@ -50,7 +50,7 @@ namespace TodoApp.Data.Entities
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoTasks");
+                    b.ToTable("TodoTasks", (string)null);
                 });
 #pragma warning restore 612, 618
         }

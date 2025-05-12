@@ -272,3 +272,4 @@ C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\ru\Micros
 C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\obj\Debug\net9.0\TodoApp.sourcelink.json
