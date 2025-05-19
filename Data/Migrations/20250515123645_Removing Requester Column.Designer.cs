@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodoApp.Data;
 
 #nullable disable
 
-namespace TodoApp.Data.Entities
+namespace TodoApp.Data.Migrations
 {
     [DbContext(typeof(TaskDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250515123645_Removing Requester Column")]
+    partial class RemovingRequesterColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,34 +60,13 @@ namespace TodoApp.Data.Entities
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TaskRequesterId")
-                        .HasColumnType("int");
-
                     b.Property<string>("TaskType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TaskRequesterId");
-
                     b.ToTable("TodoTasks");
-                });
-
-            modelBuilder.Entity("TodoApp.Model.TodoTask", b =>
-                {
-                    b.HasOne("TodoApp.Model.TaskUser", "TaskUser")
-                        .WithMany("UserTasks")
-                        .HasForeignKey("TaskRequesterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TaskUser");
-                });
-
-            modelBuilder.Entity("TodoApp.Model.TaskUser", b =>
-                {
-                    b.Navigation("UserTasks");
                 });
 #pragma warning restore 612, 618
         }

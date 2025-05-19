@@ -1,9 +1,10 @@
-using Microsoft.AspNetCore.Http;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using TodoApp.Data;
 using TodoApp.Model;
+using TodoApp.Model.DTO;
+using TodoApp.Model.Mapper;
 
 namespace TodoApp.Controller
 {
@@ -12,10 +13,12 @@ namespace TodoApp.Controller
     public class TaskController : ControllerBase
     {
         private readonly TaskDbContext _context;
-
+        private readonly IMapper _mapper;
+        
         public TaskController(TaskDbContext context)
         {
             _context = context;
+            _mapper = TaskObjMapper.InitializeAutomapper();
         }
         // Get: api/Task/getAllTasks
         [HttpGet("getAllTasks")]
@@ -33,31 +36,32 @@ namespace TodoApp.Controller
         }
 
         [HttpPost]
-        public async Task<ActionResult<TodoTask>> PostTask(TodoTask task)
+        public async Task<ActionResult<TodoTask>> PostTask([FromBody] TaskDTO taskDto)
         {
+            TaskUser? user = await _context.TaskUsers.FindAsync(taskDto.TaskRequesterId);
+
+            if (user == null)
+            {
+                return BadRequest();
+            }
+            
+            TodoTask task = _mapper.Map<TodoTask>(taskDto);
+            
             _context.TodoTasks.Add(task);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetTask), new { id = task.Id }, task);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> PutTask(int id, TodoTask task)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutTask(int id, TaskDTO taskDto)
         {
-            if (id != task.Id)
-            {
-                return BadRequest();
-            }
-            _context.Entry(task).State = EntityState.Modified;
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!((_context.TodoTasks?.Any(e => e.Id == id)).GetValueOrDefault())) return NotFound();
-                else throw;
-            }
-            return NoContent();
+            TodoTask task = _mapper.Map<TodoTask>(taskDto);
+            task.Id = id;
+            
+            _context.TodoTasks.Update(task);
+            await _context.SaveChangesAsync();
+
+            return Ok(task);
         }
 
         [HttpDelete("{id}")]

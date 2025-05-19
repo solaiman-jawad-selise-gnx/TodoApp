@@ -273,3 +273,7 @@ C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\tr\Micros
 C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\obj\Debug\net9.0\TodoApp.sourcelink.json
+C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\AutoMapper.dll
+C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Solaiman Jawad\RiderProjects\TodoApp\TodoApp\bin\Debug\net9.0\Newtonsoft.Json.Bson.dll

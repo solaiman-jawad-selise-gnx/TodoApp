@@ -9,6 +9,15 @@ namespace TodoApp.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TaskUser>()
+                .HasMany(user => user.UserTasks)
+                .WithOne(task => task.TaskUser)
+                .HasForeignKey(task => task.TaskRequesterId).IsRequired();
+        }
+        
         public DbSet<TodoTask> TodoTasks { get; set; }
+        public DbSet<TaskUser> TaskUsers { get; set; }
     }
 }

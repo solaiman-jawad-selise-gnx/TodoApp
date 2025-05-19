@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodoApp.Data;
 
 #nullable disable
 
-namespace TodoApp.Data.Entities
+namespace TodoApp.Data.Migrations
 {
     [DbContext(typeof(TaskDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250515130507_AddingRelationshipUserTask")]
+    partial class AddingRelationshipUserTask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +60,7 @@ namespace TodoApp.Data.Entities
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TaskRequesterId")
+                    b.Property<int?>("TaskRequesterId")
                         .HasColumnType("int");
 
                     b.Property<string>("TaskType")
@@ -75,9 +78,7 @@ namespace TodoApp.Data.Entities
                 {
                     b.HasOne("TodoApp.Model.TaskUser", "TaskUser")
                         .WithMany("UserTasks")
-                        .HasForeignKey("TaskRequesterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TaskRequesterId");
 
                     b.Navigation("TaskUser");
                 });
